@@ -1,0 +1,46 @@
+.comp-main-layout{
+  .sider-principal{
+    height: 100%;
+    box-shadow: 2px 0px 6px 0px rgba(0,21,41,0.35);
+    
+  }
+  .ant-layout-sider{
+    //background: #4d1f47;
+  }
+
+  .fuente-logo{
+    color: white;
+    font-size: 20px;
+    vertical-align: top;
+    line-height: 28px;
+    white-space: nowrap;
+    margin-left: 15px; 
+  }
+
+  .logo {
+    height: 32px;
+    margin: 15px;
+    display: flex;
+  }
+}
+
+.comp-cuadro-titulo{
+  background: white;
+  padding-top: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 15px;
+
+  .sector-titulo{
+    margin-top: 15px;
+
+    @media (max-width: 992px) {
+      margin-top: 5px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    padding-left: 10px;
+    padding-bottom: 5px;
+  }
+}

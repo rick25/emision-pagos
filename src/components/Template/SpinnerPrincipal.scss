@@ -1,0 +1,39 @@
+.comp-spinner-principal {
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+  z-index: 99;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+.spinner {
+  width: 4rem;
+  height: 4rem;
+
+  &.spinner3 {
+    border-top: 3px solid rgba(#000, 0.5);
+    border-right: 3px solid transparent;
+    border-radius: 50%;
+    animation: rotation 0.8s linear infinite;
+  }
+  &.spinner2 {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+    border-top: 3px solid rgba(#000, 0.5);
+    border-right: 3px solid transparent;
+    border-radius: 50%;
+    animation: rotation 0.8s linear infinite;
+  }
+
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

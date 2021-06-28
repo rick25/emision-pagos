@@ -1,0 +1,149 @@
+html,
+body,
+#app,
+.app-wrapper,
+#root {
+  height: 100%;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+
+
+
+.flex1{
+  flex: 1
+}
+
+.fade-enter,
+.fade-exit {
+}
+.fade-enter,
+.fade-exit-active {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  
+}
+
+.deshabilitado{
+  transition: filter 0.5s ease;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+
+.habilitado{
+  transition: filter 0.5s ease;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin: 0!important;
+}
+
+.desBoton{
+  pointer-events: none;
+  filter: grayscale(80%);
+}
+
+.comp-upload-spinner{
+  &.ant-upload-medio{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.site-layout-background {
+  background: #fff!important;
+}
+
+.vista-main{
+  margin: 30px;
+  background: white;
+  padding: 15px 30px;
+  box-shadow: 0px 9px 28px 0px rgba(0,0,0,0.05);
+
+  @media (max-width: 992px) { 
+    border: 1px;
+    margin: 0;
+    margin-top: 1px;
+    padding: 10px 10px;
+  }
+}
+
+$columns: 20;
+
+@mixin margin-top-list {
+  @for $i from 1 through $columns {
+      .margin-top-#{$i} { margin-top: #{$i * 5}px; }
+  }
+}
+
+@include margin-top-list;
+
+@mixin margin-bottom-list {
+  @for $i from 1 through $columns {
+      .margin-bottom-#{$i} { margin-bottom: #{$i * 5}px; }
+  }
+}
+
+@include margin-bottom-list;
+
+@mixin margin-vertical-list {
+  @for $i from 1 through $columns {
+      .margin-vertical-#{$i} { margin-bottom: #{$i * 5}px; margin-top: #{$i * 5}px; }   
+  }
+}
+
+@include margin-vertical-list;
+
+@mixin margin-left-list {
+  @for $i from 1 through $columns {
+      .margin-left-#{$i} { margin-left: #{$i * 5}px; }
+  }
+}
+
+@include margin-left-list;
+
+@mixin margin-right-list {
+  @for $i from 1 through $columns {
+      .margin-right-#{$i} { margin-right: #{$i * 5}px; }
+  }
+}
+
+@include margin-right-list;
+
+
+.tabla-antd-scroll{
+  .ant-table-content { overflow-x: auto !important}   
+}
+
+.tooltip-siglas .ant-tooltip-inner {
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Helvetica Neue';
+    border-radius: 4px;
+    background-color: #1890ff;
+    line-height: 26px;
+    padding: .2em .5em;
+}
+
+.tooltip-siglas .ant-tooltip-arrow::before{
+    background-color: #1890ff;
+}
