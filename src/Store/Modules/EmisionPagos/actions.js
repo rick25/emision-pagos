@@ -6,32 +6,40 @@ export const TOOGLE_SELECTED_OPCION_EPAGOS = 'TOOGLE_SELECTED_OPCION_EPAGOS'
 export const SET_ARRAY_CORRESPONDENCIA = 'SET_ARRAY_CORRESPONDENCIA'
 export const SEARCH_IN_CORRESPONDENCIA = 'SEARCH_IN_CORRESPONDENCIA'
 
-export function setLoading(payload) {
-    return { type: SET_LOADING, payload }
-}
+export const setLoading = (payload) => ({
+    type: SET_LOADING,
+    payload
+})
 
-export function setDatosPaso1(payload) {
-    return { type: SET_DATOS_PASO_1, payload }
-}
+export const setDatosPaso1 = (payload) => ({
+    type: SET_DATOS_PASO_1,
+    payload
+})
 
-export function setCamposEpagos(payload) {
-    return { type: SET_CAMPOS_EPAGOS, payload }
-}
+export const setCamposEpagos = (payload) => ({
+    type: SET_CAMPOS_EPAGOS,
+    payload
+})
 
-export function setOpcionesEpagos(payload) {
-    return { type: SET_OPCIONES_EPAGOS, payload }
-}
+export const setOpcionesEpagos = (payload) => ({
+    type: SET_OPCIONES_EPAGOS,
+    payload
+})
 
-export function toogleSelectedOpcionEpagos(payload) {
-    return { type: TOOGLE_SELECTED_OPCION_EPAGOS, payload }
-}
+export const toogleSelectedOpcionEpagos = (payload) => ({
+    type: TOOGLE_SELECTED_OPCION_EPAGOS,
+    payload
+})
 
-export function setCorrespondencia(camID, pcaID) {
-    return { type: SET_ARRAY_CORRESPONDENCIA, payload: {
-        camID, pcaID
-    }}
-}
+export const setCorrespondencia = (camID, pcaID) => ({
+    type: SET_ARRAY_CORRESPONDENCIA,
+    payload: {
+        camID,
+        pcaID
+    }
+})
 
-export function searchInCorrespondencia(payload) {
-    return { type: SEARCH_IN_CORRESPONDENCIA, payload }
-}
+export const searchInCorrespondencia = (payload) => ({
+    type: SEARCH_IN_CORRESPONDENCIA,
+    payload
+})

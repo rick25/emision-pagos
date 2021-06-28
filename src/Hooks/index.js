@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 
 export function postHeaders(token) {
   return {
@@ -17,7 +16,7 @@ export function authHeaders(token) {
 }
 
 export function useFetchJSON(url, setFn) {
-  const token = useSelector(state => state.usuario.datos.token)
+  // const token = useSelector(state => state.usuario.datos.token)
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
@@ -28,11 +27,12 @@ export function useFetchJSON(url, setFn) {
 
     const fetchData = async () => {
       try {
-	const res = await fetch(url, { headers: authHeaders(token) })
-	const json = await res.json()
-	if (!cancelar) setFn(json)
+        // const res = await fetch(url, { headers: authHeaders(token) })
+        const res = await fetch(url)
+        const json = await res.json()
+        if (!cancelar) setFn(json)
       } catch (error) {
-	if (!cancelar) setIsError(true)
+        if (!cancelar) setIsError(true)
       }
 
       setIsLoading(false)
@@ -43,7 +43,7 @@ export function useFetchJSON(url, setFn) {
     return () => {
       cancelar = true
     }
-  }, [url, token, setFn])
+  }, [url, setFn])
 
   return [isLoading, isError]
 }
