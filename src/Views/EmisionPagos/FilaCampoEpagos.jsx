@@ -73,7 +73,7 @@ const FilaCampoEpagos = ({
             <Input placeholder={"Nombre"} value={camNombre} />
           </Form.Item>
         </Col>
-        <Col md={3}>
+        <Col md={3} className="margin-top-4 margin-left-8">
           {camObligatorio==='N' && <div className="btn-quitar-fila">
             <Popconfirm
               title="¿Querés eliminar este campo?"
