@@ -101,7 +101,7 @@ export const Paso1 = ({
               >
                 {organismos?.map(item =>
                   <Select.Option key={item.orgID} value={item.orgID}>
-                    {`${item.orgDescripcion} - ${item.orgCalle} ${item.orgCalleNumero}`}
+                    {`${item.orgDescripcion}`}
                   </Select.Option>
                 )}
               </Select>
@@ -119,7 +119,7 @@ export const Paso1 = ({
               >
                 {comprobantes?.filter(item => item.orgID===organismo).map(item =>
                   <Select.Option key={item.comID} value={item.comID}>
-                    {`${item.comSiglas}-${item.comDescripcion} (${item.orgID})`}
+                    {`${item.comDescripcion}`}
                   </Select.Option>
                 )}
               </Select>
@@ -135,9 +135,9 @@ export const Paso1 = ({
                 onSelect={setImportacion}
                 disabled={!organismo && !comprobante}
               >
-                {importaciones?.filter(item => item.orgID===organismo).map(item =>
+                {importaciones?.filter(item => item.orgID===organismo && item.imiEstado==="TERMINADO").map(item =>
                   <Select.Option key={item.imiID} value={item.imiID}>
-                    {`${item.imiID}-${item.imiEstado} (${item.orgID})`}
+                    {`${item.imiDescripcion}`}
                   </Select.Option>
                 )}
               </Select>

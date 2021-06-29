@@ -46,15 +46,15 @@ const EmisionPagos = () => {
     dispatch(cambiarBreadcrumb([{ nombre: "Emisiones / Emitir Pagos" }]));
   }, [dispatch]);
 
-  useEffect(() => {
-    if (importacion) {
-      request(`/api/set-campos-epagos/${importacion}`, {}, true).then(
-        (data) => {
-          setCamposEpagos(data);
-        }
-      );
-    }
-  }, [importacion]);
+  // useEffect(() => {
+  //   if (importacion) {
+  //     request(`/api/set-campos-epagos/${importacion}`, {}, true).then(
+  //       (data) => {
+  //         setCamposEpagos(data);
+  //       }
+  //     )
+  //   }
+  // }, [importacion]);
 
   const cambiarPaso = (valor) => {
     const nuevoPaso = paso + valor;
