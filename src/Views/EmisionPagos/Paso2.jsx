@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Typography, Button } from 'antd'
-import { postHeaders } from '@/Hooks'
-import { setOpcionesEpagos } from '@/Store/Modules/EmisionPagos/actions'
+import { postHeaders } from '../../Hooks'
+import { setOpcionesEpagos } from '../../Store/Modules/EmisionPagos/actions'
 import FilaCampoEpagos from './FilaCampoEpagos'
 
 export const Paso2 = ({

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col, Input, Form, Popconfirm, Select, InputNumber, Radio } from 'antd'
 import { CloseCircleOutlined } from '@ant-design/icons'
-import { } from '@/Store/Modules/EmisionPagos/actions'
+import { } from '../../Store/Modules/EmisionPagos/actions'
 import { connect } from 'react-redux'
-import { toogleSelectedOpcionEpagos, setCorrespondencia, searchInCorrespondencia } from '@/Store/Modules/EmisionPagos/actions'
+import { toogleSelectedOpcionEpagos, setCorrespondencia, searchInCorrespondencia } from '../../Store/Modules/EmisionPagos/actions'
 
 const FilaCampoEpagos = ({
   dato = {},
