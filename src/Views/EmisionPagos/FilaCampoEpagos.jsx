@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col, Input, Form, Popconfirm, Select, InputNumber, Radio } from 'antd'
 import { CloseCircleOutlined } from '@ant-design/icons'
-import { } from '../../Store/Modules/EmisionPagos/actions'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { toogleSelectedOpcionEpagos, setCorrespondencia, searchInCorrespondencia } from '../../Store/Modules/EmisionPagos/actions'
 
-const FilaCampoEpagos = ({
-  dato = {},
-  opcionesEpagos = [],
-  arrayCorrespondencia = [],
-  toogleSelectedOpcionEpagos = f => f,
-  setCorrespondencia = f => f,
-  searchInCorrespondencia = f => f,
-}) => {
+const FilaCampoEpagos = ({ dato }) => {
   const [opcionesSelect, setOpcionesSelect] = useState([])
+
+  const { opcionesEpagos, arrayCorrespondencia } = useSelector((state) => ({
+    opcionesEpagos: state.datosPago.opcionesEpagos,
+    arrayCorrespondencia: state.datosPago.arrayCorrespondencia,
+  }))
 
   useEffect(() => {
     setOpcionesSelect(opcionesEpagos
-      .filter(opt => opt.selected === false)
+      .filter(opt => !opt.selected)
       .map(({pcaID, pcaDescripcion}) => (
         <Select.Option key={pcaID} value={pcaID}>
           {pcaDescripcion}
@@ -53,7 +50,19 @@ const FilaCampoEpagos = ({
   }
 
   const {camDescripcion, camNombre, camObligatorio, camTipo, camID} = dato
-
+  const tiposDeCampos = {
+    INTEGER : <InputNumber style={{ width: '100%' }} min={1} onChange={e => changeOption(e, camID)}></InputNumber>,
+    VARCHAR: <Select style={{ width: '100%' }} name={camID} placeholder="Elija un valor" onChange={e => changeOptions(e, camID)} rules={[{ required: true, message: 'Complete este campo para continuar'}]}>{opcionesSelect}</Select>,
+    BOOLEAN: <Radio.Group
+        // onChange={e => changeOption(e, camNombre)}
+        // onChange={onChange}
+        // value={value}
+      >
+      <Radio value={1}>Si</Radio>
+      <Radio value={0}>No</Radio>
+    </Radio.Group>
+  }
+  
   return (
     <>
       <Row gutter={24} className="margin-bottom-1">
@@ -65,20 +74,13 @@ const FilaCampoEpagos = ({
       </Row>
       <Row gutter={24} className="margin-bottom-2 margin-right-2">
         <Col md={6}>
-          <Form.Item
-            hasFeedback
-            labelCol={{ span: 18 }}
-            validateStatus={'success'}
-          >
+          <Form.Item hasFeedback labelCol={{ span: 18 }} validateStatus={'success'}>
             <Input placeholder={"Nombre"} value={camNombre} />
           </Form.Item>
         </Col>
-        <Col md={3} className="margin-top-4 margin-left-8">
+        <Col md={3} className="margin-top-1">
           {camObligatorio==='N' && <div className="btn-quitar-fila">
-            <Popconfirm
-              title="¿Querés eliminar este campo?"
-              okText="Si"
-              cancelText="No"
+            <Popconfirm title="¿Querés eliminar este campo?" okText="Si" cancelText="No"
               // onConfirm={() => quitarParametroEmision(campo)}
             >
               <CloseCircleOutlined />
@@ -87,75 +89,11 @@ const FilaCampoEpagos = ({
           }
         </Col>
         <Col md={9}>
-          {camTipo==='INTEGER'
-            ?
-              <InputNumber
-                style={{ width: '100%' }}
-                min={1}
-                onChange={e => changeOption(e, camID)}
-                allowClear
-              >
-              </InputNumber>
-            :
-              camTipo==='VARCHAR'
-              ?
-                <Select
-                  style={{ width: '100%' }}
-                  name={camID}
-                  placeholder="Elija un valor"
-                  onChange={e => changeOptions(e, camID)}
-
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Complete este campo para continuar'
-                    }
-                  ]}
-                  allowClear
-                >
-                  {opcionesSelect}
-                </Select>
-              :
-                <Radio.Group
-                  // onChange={e => changeOption(e, camNombre)}
-                  // onChange={onChange}
-                  // value={value}
-                >
-                  <Radio value={1}>Si</Radio>
-                  <Radio value={0}>No</Radio>
-                </Radio.Group>
-                // <Select
-                //   style={{ width: '100%' }}
-                //   placeholder="Si o No"
-                //   onChange={e => changeOption(e, camNombre)}
-                //   // defaultValue={camID}
-                //   allowClear
-                // >
-                //   {['No', 'Si'].map((value, index) =>
-                //     <Select.Option
-                //       key={index}
-                //       value={index}
-                //     >
-                //       {value}
-                //     </Select.Option>
-                //   )}
-                // </Select>
-          }
+          {tiposDeCampos[camTipo]}
         </Col>
       </Row>
     </>
   )
 }
 
-const mapStateToProps = (state) => ({
-  opcionesEpagos: state.datosPago.opcionesEpagos,
-  arrayCorrespondencia: state.datosPago.arrayCorrespondencia,
-})
-
-const mapDispatchToProps = {
-  toogleSelectedOpcionEpagos,
-  setCorrespondencia,
-  searchInCorrespondencia,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilaCampoEpagos)
+export default FilaCampoEpagos
